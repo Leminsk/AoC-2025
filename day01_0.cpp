@@ -2,13 +2,13 @@
 #include <fstream>
 
 int calculateRotation(const int& current_position, const char& direction, const std::string& amount) {
-    int new_position = current_position;
+    int new_position;
     int d = std::stoi(amount)%100; // multiples of 100 are a full rotation
     if(direction == 'R') {
-        new_position += d;
+        new_position = current_position + d;
         if(new_position >= 100) { new_position -= 100; }
     } else {
-        new_position -= d;
+        new_position = current_position - d;
         if(new_position < 0) { new_position += 100; }
     }
     return new_position;
@@ -20,9 +20,7 @@ int main() {
     std::string num_str;
     int current_pos = 50;
     int zero_counter = 0;
-    int line_number = 0;
     while(std::getline(infile, line)) {
-        ++line_number;
         if(line.size() == 2) {
             num_str = line[1];
         } else {
