@@ -21,11 +21,7 @@ int main() {
     int current_pos = 50;
     int zero_counter = 0;
     while(std::getline(infile, line)) {
-        if(line.size() == 2) {
-            num_str = line[1];
-        } else {
-            num_str = line.substr(1, line.size()-1);
-        }
+        num_str = line.substr(1, line.size()-1);
         current_pos = calculateRotation(current_pos, line[0], num_str);
         if(current_pos == 0) { ++zero_counter; }
     }
