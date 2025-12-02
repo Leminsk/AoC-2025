@@ -30,7 +30,6 @@ int main() {
     }
 
     uint64_t low, high;
-    size_t str_size;
     uint64_t accumulator = 0;
     for(const std::vector<std::string>& range : ranges) {
         low = std::stoull(range[0]);
