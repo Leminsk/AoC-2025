@@ -6,11 +6,14 @@
 bool hasRepeatingSequence(uint64_t number) {
     std::string s = std::to_string(number);
     const size_t s_size = s.size();
-    if(s_size == 1) {
+    if(s_size % 2 != 0) {
         return false;
     }
-    static const std::regex r("^(\\d+?)\\1+$");
-    return std::regex_match(s, r);
+
+    return std::equal(
+        s.begin(), s.begin() + s_size/2, 
+        s.begin() + s_size/2
+    );
 }
 
 int main() {
@@ -32,6 +35,10 @@ int main() {
     uint64_t low, high;
     uint64_t accumulator = 0;
     for(const std::vector<std::string>& range : ranges) {
+        if((range[0].size() == range[1].size()) && range[0].size() % 2 != 0) {
+            continue;
+        }
+
         low = std::stoull(range[0]);
         high = std::stoull(range[1]);
         for(uint64_t i=low; i<=high; ++i) {
