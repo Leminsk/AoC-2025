@@ -3,7 +3,6 @@
 #include <vector>
 #include <regex>
 #include <set>
-#include <unordered_map>
 
 class JunctionBox {
 public:
@@ -22,12 +21,6 @@ public:
     friend std::ostream& operator<<(std::ostream& stream, const JunctionBox& b) {
         stream << '[' << b.id << "]_{" << b.x << ',' << b.y << ',' << b.z << '}';
         return stream;
-    }
-};
-
-struct PairToHash {
-    std::size_t operator()(const std::pair<JunctionBox*,JunctionBox*>& p) const {
-        return std::hash<int>()(p.first->id) ^ (std::hash<int>()(p.second->id) << 1);
     }
 };
 
@@ -74,7 +67,6 @@ int main() {
     }
 
     // pre-calculate all those darn distances and order them
-    std::unordered_map<std::pair<JunctionBox*,JunctionBox*>, bool, PairToHash> checked_pairs;
     std::set<SetHelper, decltype(&cmp)> all_distances(&cmp);
     for(int i=0; i<id-1; ++i) {
         for(int j=i+1; j<id; ++j) {
