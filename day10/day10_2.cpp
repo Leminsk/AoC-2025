@@ -102,11 +102,12 @@ int main() {
 
     int64_t total_button_presses = 0;
 
+    Highs highs;
+
     for(int line=0; line<joltage_targets.size(); ++line) {
         std::vector<int>& current_joltages = joltage_targets[line];
         std::vector< std::vector<int> >& current_buttons_ints = all_buttons_int[line];
-
-        Highs highs;
+        
         HighsModel model;
         HighsLp &lp = model.lp_;
 
