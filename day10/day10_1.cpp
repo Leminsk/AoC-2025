@@ -64,7 +64,7 @@ int main() {
         while(true) { 
             std::vector<bool> button = std::vector<bool>(light_target.size(), false);
             for(; line[i] != ')'; ++i) {
-                if(line[i]==',') { continue; }
+                if(line[i]==',' || line[i]=='(') { continue; }
                 button[line[i] - '0'] = true;
             }
             buttons.push_back(button);

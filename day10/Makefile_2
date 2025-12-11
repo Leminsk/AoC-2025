@@ -1,0 +1,4 @@
+MAIN_SOURCE = day10_2.cpp
+INCLUDE_HIGHS = -IC:/msys64/mingw64/include/highs -IC:/msys64/mingw64/include/highs_generated
+all : $(MAIN_SOURCE)
+	g++ $(MAIN_SOURCE) $(INCLUDE_HIGHS) -LC:/msys64/mingw64/lib -lhighs -lpthread -lz -lmingw32 -o main
